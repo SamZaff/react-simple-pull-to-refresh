@@ -240,7 +240,7 @@ var PullToRefresh = function (_a) {
         if (yDistanceMoved >= maxPullDownDistance) {
             return;
         }
-        pullDownRef.current.style.opacity = ((yDistanceMoved) / 65).toString();
+        pullDownRef.current.style.opacity = (yDistanceMoved / 65).toString();
         childrenRef.current.style.overflow = 'visible';
         childrenRef.current.style.transform = "translate(0px, " + yDistanceMoved + "px)";
         pullDownRef.current.style.visibility = 'visible';
@@ -281,7 +281,9 @@ var PullToRefresh = function (_a) {
         React.createElement("div", { className: "ptr__pull-down", ref: pullDownRef },
             React.createElement("div", { className: "ptr__loader ptr__pull-down--loading" }, refreshingContent),
             React.createElement("div", { className: "ptr__pull-down--pull-more" }, pullingContent)),
-        React.createElement("div", { className: "ptr__children", ref: childrenRef },
+        React.createElement("div", { className: "ptr__children", 
+            //initial scrolling fix
+            style: { overflow: 'hidden auto', transform: 'unset' }, ref: childrenRef },
             children,
             React.createElement("div", { className: "ptr__fetch-more", ref: fetchMoreRef },
                 React.createElement("div", { className: "ptr__loader ptr__fetch-more--loading" }, refreshingContent)))));
